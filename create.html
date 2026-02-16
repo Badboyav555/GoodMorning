@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>अपना Good Morning मैसेज बनाएं ☀️</title>
+<title>Good Morning 🎨</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -41,20 +41,12 @@ button{
     background:#25D366;
     color:white;
 }
-
-.message-box{
-    margin-top:20px;
-    background:#222;
-    padding:15px;
-    border-radius:10px;
-    line-height:1.6;
-}
 </style>
 </head>
 
 <body>
 
-<h2>अपने नाम से Good Morning मैसेज बनाएं ☀️</h2>
+<h2> अपने नाम से बनाए गुड मॉर्निंग मैसेज </h2>
 
 <input type="text" id="nameInput" placeholder="अपना नाम लिखें">
 <br>
@@ -64,8 +56,7 @@ button{
 
 <script>
 let finalLink="";
-let adOpened=false;
-let senderName="";
+let adOpened=false; // 👈 ad control
 
 function generate(){
     const name=document.getElementById("nameInput").value.trim();
@@ -74,26 +65,19 @@ function generate(){
         return;
     }
 
-    senderName=name;
     finalLink=window.location.origin+"?from="+encodeURIComponent(name);
 
     document.getElementById("result").innerHTML=
-    "<div class='message-box'>"+
-    "☀️ नई सुबह की नई किरण 🌸<br>"+
-    "नई उम्मीदों का नया सफर ✨<br><br>"+
-    "आपका दिन खुशियों से भरा रहे 😊<br>"+
-    "हर सपना पूरा हो आपका 💫<br><br>"+
-    "🌼 Good Morning 🌼<br><br>"+
-    "— "+name+
-    "</div>"+
-    "<br><button class='share-btn' onclick='share()' id='shareBtn'>WhatsApp पर भेजें</button>";
+    "🎉 आपका लिंक तैयार है:<br><br>"+finalLink+
+    "<br><br><button class='share-btn' onclick='share()' id='shareBtn'>WhatsApp पर भेजें</button>";
 }
 
 function share(){
 
-    const adLink="https://omg10.com/4/10615483";
+    const adLink="https://omg10.com/4/10615483"; // 👈 Yaha apna direct link daal
 
     if(!adOpened){
+        // First click → ad open
         window.open(adLink,"_blank");
         adOpened=true;
 
@@ -101,9 +85,9 @@ function share(){
         "अब WhatsApp पर भेजें";
     }
     else{
+        // Second click → WhatsApp open
         const text=
-        "🌅 देखो " + senderName +
-        " ने आपके लिए क्या भेजा है 👇\n\n" +
+        "🎨 देखिए मैंने आपके लिए क्या भेजा है 👇\n\n"+
         finalLink;
 
         window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
