@@ -3,24 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>अपना Good Morning मैसेज बनाएं ☀️</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+<title>Good Morning 🎨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-    background:#111;
-    color:white;
-    text-align:center;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:'Poppins',sans-serif;
-    padding:40px 20px;
 }
 
-input{
-    padding:12px;
-    width:80%;
-    max-width:300px;
-    border:none;
-    border-radius:10px;
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    padding:20px;
+}
+
+.card{
+    background:rgba(0,0,0,0.6);
+    padding:25px;
+    border-radius:20px;
+    max-width:500px;
+    width:100%;
+    box-shadow:0 0 30px rgba(255,255,255,0.2);
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.name{
+    font-size:26px;
+    font-weight:800;
+    color:#ffeb3b;
+    text-shadow:0 0 15px #ffeb3b;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin:15px 0;
+}
+
+.message{
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:15px;
 }
 
 button{
@@ -28,11 +64,11 @@ button{
     border:none;
     border-radius:10px;
     font-weight:bold;
-    margin-top:15px;
     cursor:pointer;
+    margin-top:10px;
 }
 
-.generate-btn{
+.create-btn{
     background:#ff9800;
     color:white;
 }
@@ -42,72 +78,74 @@ button{
     color:white;
 }
 
-.message-box{
+.ad-box{
     margin-top:20px;
-    background:#222;
-    padding:15px;
-    border-radius:10px;
-    line-height:1.6;
 }
 </style>
 </head>
 
 <body>
 
-<h2>अपने नाम से Good Morning मैसेज बनाएं ☀️</h2>
+<div class="card">
 
-<input type="text" id="nameInput" placeholder="अपना नाम लिखें">
-<br>
-<button class="generate-btn" onclick="generate()">Generate</button>
+    <div id="content"></div>
 
-<div id="result"></div>
+    <div class="ad-box">
+        <!-- 🔥 Yaha Adsterra ka ad code paste karna -->
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-let finalLink="";
-let adOpened=false;
-let senderName="";
-
-function generate(){
-    const name=document.getElementById("nameInput").value.trim();
-    if(name===""){
-        alert("अपना नाम लिखें");
-        return;
-    }
-
-    senderName = name;
-    finalLink = window.location.origin + "?from=" + encodeURIComponent(name);
-
-    document.getElementById("result").innerHTML=
-    "<div class='message-box'>"+
-    "☀️ नई सुबह की नई किरण 🌸<br>"+
-    "नई उम्मीदों का नया सफर ✨<br><br>"+
-    "आपका दिन खुशियों से भरा रहे 😊<br>"+
-    "हर सपना पूरा हो आपका 💫<br><br>"+
-    "🌼 Good Morning 🌼<br><br>"+
-    "— "+name+
-    "</div>"+
-    "<br><button class='share-btn' onclick='share()' id='shareBtn'>WhatsApp पर भेजें</button>";
+function getParam(name){
+    const params=new URLSearchParams(window.location.search);
+    return params.get(name);
 }
 
-function share(){
+const fromName=getParam("from");
 
-    const adLink="YOUR_ADSTERRA_DIRECT_LINK"; // 👈 apna ad direct link yaha daal
+if(fromName){
 
-    if(!adOpened){
-        window.open(adLink,"_blank");
-        adOpened=true;
+document.getElementById("content").innerHTML=
+"<h1><span class='name'>"+fromName+"</span> ने आपके लिए क्या भेजा है? 🤔</h1>"+
+"<img src='https://images.unsplash.com/photo-1610878180933-1237289d7f6f' alt='Holi'>"+
+"<div class='message'>"+
+"🌸 Good Morning 🌄<br><br>"+
+"हर दिन की शुरुआत मुस्कान से हो, आपकी हर ख्वाहिश आसान से हो<br>"+
+"हर दिन नई उमंग और नई रोशनी लाए 🌈<br>"+
+"आपका हर सपना सच हो,<br>"+
+"और आपका परिवार हमेशा मुस्कुराता रहे 💖<br><br>"+
+"🎉खुश रहो, स्वस्थ रहो, यही दुआ है हमारी🎉"+
+"</div>"+
+"<button class='share-btn' onclick='shareWish()'>WhatsApp पर भेजें</button><br>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से बनाएं</button>";
 
-        document.getElementById("shareBtn").innerText=
-        "अब WhatsApp पर भेजें";
-    }
-    else{
-        const text=
-        "🌅 देखो " + senderName +
-        " ने आपको एक प्यारा सा Good Morning मैसेज भेजा है 👇\n\n" +
-        finalLink;
+confetti({
+    particleCount:250,
+    spread:120,
+    origin:{y:0.6}
+});
 
-        window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
-    }
+}else{
+
+document.getElementById("content").innerHTML=
+"<h1>🎨 Good Morning 🌞</h1>"+
+"<button class='create-btn' onclick='goCreate()'>अपने नाम से Good Morning विश बनाएं</button>";
+}
+
+function goCreate(){
+    window.location.href="create.html";
+}
+
+function shareWish(){
+    const link=window.location.href;
+    const text=
+    "🌸Good Morning 🎨✨\n\n"+
+    "देखिए आपके लिए क्या खास भेजा गया है 👇\n"+link;
+
+    window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
 }
 </script>
 
