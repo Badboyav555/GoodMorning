@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>अपना Good Morning मैसेज बनाएं ☀️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    background:#111;
+    color:white;
+    text-align:center;
+    font-family:'Poppins',sans-serif;
+    padding:40px 20px;
+}
+
+input{
+    padding:12px;
+    width:80%;
+    max-width:300px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+.generate-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.share-btn{
+    background:#25D366;
+    color:white;
+}
+
+.message-box{
+    margin-top:20px;
+    background:#222;
+    padding:15px;
+    border-radius:10px;
+    line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<h2>अपने नाम से Good Morning मैसेज बनाएं ☀️</h2>
+
+<input type="text" id="nameInput" placeholder="अपना नाम लिखें">
+<br>
+<button class="generate-btn" onclick="generate()">Generate</button>
+
+<div id="result"></div>
+
+<script>
+let finalLink="";
+let adOpened=false;
+let senderName="";
+
+function generate(){
+    const name=document.getElementById("nameInput").value.trim();
+    if(name===""){
+        alert("अपना नाम लिखें");
+        return;
+    }
+
+    senderName = name;
+    finalLink = window.location.origin + "?from=" + encodeURIComponent(name);
+
+    document.getElementById("result").innerHTML=
+    "<div class='message-box'>"+
+    "☀️ नई सुबह की नई किरण 🌸<br>"+
+    "नई उम्मीदों का नया सफर ✨<br><br>"+
+    "आपका दिन खुशियों से भरा रहे 😊<br>"+
+    "हर सपना पूरा हो आपका 💫<br><br>"+
+    "🌼 Good Morning 🌼<br><br>"+
+    "— "+name+
+    "</div>"+
+    "<br><button class='share-btn' onclick='share()' id='shareBtn'>WhatsApp पर भेजें</button>";
+}
+
+function share(){
+
+    const adLink="YOUR_ADSTERRA_DIRECT_LINK"; // 👈 apna ad direct link yaha daal
+
+    if(!adOpened){
+        window.open(adLink,"_blank");
+        adOpened=true;
+
+        document.getElementById("shareBtn").innerText=
+        "अब WhatsApp पर भेजें";
+    }
+    else{
+        const text=
+        "🌅 देखो " + senderName +
+        " ने आपको एक प्यारा सा Good Morning मैसेज भेजा है 👇\n\n" +
+        finalLink;
+
+        window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
+    }
+}
+</script>
+
+</body>
+</html>
